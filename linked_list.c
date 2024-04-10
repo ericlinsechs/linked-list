@@ -83,16 +83,14 @@ void remove_entry(node_t **head, node_t *entry)
  *  tmp->next = (*node)->next;  // a(tmp) -> c, b(*node) -> c -> d
  *  (*node)->next = tmp;        // b(*node) -> a(tmp) -> c -> d
  */
-node_t *swap_pair(node_t *head)
+void swap_pair(node_t **head)
 {
-    for (node_t **node = &head; *node && (*node)->next;
-         node = &(*node)->next->next) {
-        node_t *tmp = *node;
-        *node = (*node)->next;
-        tmp->next = (*node)->next;
-        (*node)->next = tmp;
+    for (; *head && (*head)->next; head = &(*head)->next->next) {
+        node_t *tmp = *head;
+        *head = (*head)->next;
+        tmp->next = (*head)->next;
+        (*head)->next = tmp;
     }
-    return head;
 }
 
 /*

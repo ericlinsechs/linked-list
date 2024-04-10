@@ -28,7 +28,7 @@ int main()
     /* swap pair.
      * See https://leetcode.com/problems/swap-nodes-in-pairs/
      */
-    head = swap_pair(head);
+    swap_pair(&head);
     print_list(head);
 
     head = reverse(head);

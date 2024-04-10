@@ -120,6 +120,24 @@ void reverse(node_t **head)
     *head = cursor;
 }
 
+static void __reverse_recursive(node_t *curr, node_t *prev, node_t **head)
+{
+    if (!curr) {
+        *head = prev;
+        return;
+    }
+
+    node_t *next = curr->next;
+    curr->next = prev;
+
+    __reverse_recursive(next, curr, head);
+}
+
+void reverse_recursive(node_t **head)
+{
+    __reverse_recursive(*head, NULL, head);
+}
+
 void print_list(node_t *head)
 {
     for (node_t *current = head; current; current = current->next)

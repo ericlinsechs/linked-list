@@ -8,19 +8,16 @@ int main()
 
     print_list(head);
 
-    add_entry(&head, 72);
-    add_entry(&head, 101);
-    add_entry(&head, 108);
-    add_entry(&head, 109);
-    add_entry(&head, 110);
-    add_entry(&head, 111);
+    for (int i = 1; i <= 10; i++) {
+        add_entry(&head, i);
+    }
 
     print_list(head);
 
-    node_t *entry = find_entry(head, 101);
+    node_t *entry = find_entry(head, 3);
     remove_entry(&head, entry);
 
-    entry = find_entry(head, 111);
+    entry = find_entry(head, 7);
     remove_entry(&head, entry);
 
     print_list(head);
@@ -32,6 +29,9 @@ int main()
     print_list(head);
 
     reverse_recursive(&head);
+    print_list(head);
+
+    shuffle(&head);
     print_list(head);
 
     delete_list(&head);

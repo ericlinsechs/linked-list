@@ -1,7 +1,9 @@
 #include "linked_list.h"
 #include <assert.h>
+#include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
 
 /*
@@ -136,6 +138,45 @@ static void __reverse_recursive(node_t *curr, node_t *prev, node_t **head)
 void reverse_recursive(node_t **head)
 {
     __reverse_recursive(*head, NULL, head);
+}
+
+static void swap_values(node_t *node1, node_t *node2)
+{
+    int temp = node1->value;
+    node1->value = node2->value;
+    node2->value = temp;
+}
+
+void shuffle(node_t **head)
+{
+    /* Count the length of the list */
+    node_t **indirect = head;
+    int len = 0;
+    while (*indirect) {
+        len++;
+        indirect = &(*indirect)->next;
+    }
+
+    /*
+     * Perform Fisher-Yates shuffle
+     *
+     * See https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle
+     */
+    srand(time(NULL));
+
+    node_t *curr = *head;
+
+    while (len--) {
+        int random = rand() % (len + 1);
+
+        node_t *node_rand = *head;
+        for (int j = 0; j < random; j++)
+            node_rand = node_rand->next;
+
+        swap_values(curr, node_rand);
+
+        curr = curr->next;
+    }
 }
 
 void print_list(node_t *head)

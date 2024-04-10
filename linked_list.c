@@ -94,7 +94,7 @@ void swap_pair(node_t **head)
 }
 
 /*
- * reverse - revese the sequence of the list
+ * reverse - reverse the sequence of the list
  * @head: list head
  *
  * Description:
@@ -108,16 +108,16 @@ void swap_pair(node_t **head)
  *  cursor = head;              // b(head, cursor) -> a -> NULL, c(next) -> d
  *  head = next;                // b(cursor) -> a -> NULL, c(next, head) -> d
  */
-node_t *reverse(node_t *head)
+void reverse(node_t **head)
 {
     node_t *cursor = NULL;
-    while (head) {
-        node_t *next = head->next;
-        head->next = cursor;
-        cursor = head;
-        head = next;
+    while (*head) {
+        node_t *next = (*head)->next;
+        (*head)->next = cursor;
+        cursor = *head;
+        *head = next;
     }
-    return cursor;
+    *head = cursor;
 }
 
 void print_list(node_t *head)

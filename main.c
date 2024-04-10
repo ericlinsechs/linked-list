@@ -31,7 +31,7 @@ int main()
     swap_pair(&head);
     print_list(head);
 
-    head = reverse(head);
+    reverse(&head);
     print_list(head);
 
     delete_list(&head);

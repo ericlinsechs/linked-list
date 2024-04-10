@@ -10,7 +10,7 @@ void add_entry(node_t **head, int new_value);
 node_t *find_entry(node_t *head, int value);
 void remove_entry(node_t **head, node_t *entry);
 void swap_pair(node_t **head);
-node_t *reverse(node_t *head);
+void reverse(node_t **head);
 void print_list(node_t *head);
 void delete_list(node_t **head);
 
